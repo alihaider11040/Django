@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Class and Year</title>
+</head>
+<body>
+    <h1>Select Class and Year</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="class">Select Class:</label>
+        <select name="class" id="class">
+            {% for class in classes %}
+                <option value="{{ class.id }}">{{ class.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="year">Select Year:</label>
+        <select name="year" id="year">
+            <option value="I">1</option>
+            <option value="II">2</option>
+        </select><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

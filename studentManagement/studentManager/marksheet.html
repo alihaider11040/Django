@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Marksheet</title>
+</head>
+<body>
+    <h1>Marksheet</h1>
+    <form method="post" action="{% url 'save_marks' %}">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Subjects</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td>{{ student.student_name }}</td>
+                        <td>
+                            <ul>
+                                {% for subject in subjects %}
+                                    <li>
+                                        {{ subject.name }}:
+                                        <input type="number" name="marks_{{ student.id }}_{{ subject.id }}">
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="submit" value="Save Marks">
+    </form>
+</body>
+</html>
